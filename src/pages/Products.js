@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Details from "./Details";
 import "./Products.css";
 import { useNavigate, Outlet } from "react-router-dom";
+import axios from "axios";
 
 const Products = () => {
   const navigation = useNavigate();
+  const [photos, setPhotos] = useState([]);
+
+  useEffect(() => {
+    var config = {
+      method: "GET",
+      url: "https://jsonplaceholder.typicode.com/photos",
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+
+    axios(config)
+      .then((resp) => {
+        setPhotos(resp.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
+
+  console.log(photos);
 
   const [arrayOfData, setArrayOfData] = useState([
     {
@@ -27,15 +49,19 @@ const Products = () => {
 
   return (
     <div className="flexer">
-      {arrayOfData.map((data) => {
-        return (
-          <div
-            className="each-card"
-            onClick={() => navigation(`/products/${data.id}/${data.name}`)}
-          >
-            <p>{data.name}</p>
-          </div>
-        );
+      {photos.map((photo, index) => {
+        if (photo.id < 10) {
+          return (
+            <div
+              key={index}
+              className="each-card"
+                onClick={() => navigation(`/products/${photo.id}/${photo.title}`)}
+            >
+              <img src={photo.url} style={{ width: "100px", height: "100px" }} />
+              <p>{photo.title}</p>
+            </div>
+          );
+        } else return null;
       })}
       <Outlet />
     </div>
