@@ -1,0 +1,25 @@
+.new-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 200px;
+  border-radius: 10px;
+  background-color: green;
+  cursor: pointer;
+ 
+}
+
+.btn-text {
+  color: white;
+}
+
+.upper {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

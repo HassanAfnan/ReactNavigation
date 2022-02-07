@@ -1,0 +1,21 @@
+.flexer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    min-height: 400px;
+    height: auto;
+}
+
+.each-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    background-color: orange;
+    color:white;
+    border-radius: 10px;
+    margin-top: 50px;
+}
